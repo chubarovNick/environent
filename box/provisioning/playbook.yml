@@ -5,9 +5,9 @@
   tasks:
     - apt: update_cache=true cache_valid_time=604800
       tags: apt-cache
-      
+
     - include: mongo.yml
-      tahs: mongo
+      tags: mongo
     - include: vim.yml
       tags: vim
     - include: postgresql.yml
@@ -21,3 +21,12 @@
   handlers:
     - name: restart postgresql
       service: name=postgresql state=restarted
+
+    - name: mongodb-start
+      service: name=mongodb state=started
+
+    - name: mongodb-restart
+      service: name=mongodb state=restarted
+
+    - name: mongodb-reload
+      service: name=mongodb state=reloaded
