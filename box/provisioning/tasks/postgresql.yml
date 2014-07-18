@@ -17,10 +17,6 @@
   lineinfile: dest=/etc/postgresql/9.3/main/pg_hba.conf line="host  all   all   0.0.0.0/0   trust"
   notify: restart postgresql
 
-- name: Allow localhost connections
-  lineinfile: dest=/etc/postgresql/9.3/main/postgresql.conf regexp="listen_addresses" line="listen_addresses = '*'" state=present
-  notify: restart postgresql
-
 - name: Create pgtunned config
   sudo_user: postgres
   notify: restart postgresql
@@ -32,3 +28,7 @@
           --connections={{max_connections}};
          cp /etc/postgresql/9.3/main/postgresql.conf.pgtune_{{type}}_{{total_memory}}_{{max_connections}} /etc/postgresql/9.3/main/postgresql.conf
          creates=/etc/postgresql/9.3/main/postgresql.conf.pgtune_{{type}}_{{total_memory}}_{{max_connections}}
+
+- name: Allow localhost connections
+  lineinfile: dest=/etc/postgresql/9.3/main/postgresql.conf regexp="listen_addresses" line="listen_addresses = '*'" state=present
+  notify: restart postgresql

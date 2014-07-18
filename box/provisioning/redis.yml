@@ -1,2 +1,0 @@
-- apt_repository: repo='ppa:chris-lea/redis-server'
-- apt: pkg='redis-server'

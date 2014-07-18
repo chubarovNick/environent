@@ -14,7 +14,6 @@ logpath=/var/log/mongodb/mongodb.log
 
 logappend=true
 
-bind_ip = {{ mongodb_bind_ip|default('127.0.0.1') }}
 #port = 27017
 
 # Disables write-ahead journaling
@@ -86,4 +85,4 @@ nohttpinterface = {{ mongodb_nohttpinterface|default('true') }}
 #source = slave.example.com
 
 # in replica set configuration, specify the name of the replica set
-# replSet = setname 
+# replSet = setname
