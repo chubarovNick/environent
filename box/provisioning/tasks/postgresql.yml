@@ -32,3 +32,10 @@
 - name: Allow localhost connections
   lineinfile: dest=/etc/postgresql/9.3/main/postgresql.conf regexp="listen_addresses" line="listen_addresses = '*'" state=present
   notify: restart postgresql
+
+- name: Install psycopg2
+  apt: pkg=python-psycopg2
+
+- name: Create user
+  sudo_user: postgres
+  postgresql_user: name={{postgres_user}} password=NULL role_attr_flags=CREATEDB,CREATEROLE,SUPERUSER
