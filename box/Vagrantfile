@@ -37,6 +37,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     ansible.extra_vars = {
       postgres_user: `echo "$USER"`
     }
-    #ansible.skip_tags = ['apt-cache', 'pgconf', 'vim']
+    ansible.skip_tags = ['mongo']
   end
 end
